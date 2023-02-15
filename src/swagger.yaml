@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Card API"
+  description: "Credit Card API list"
+paths:
+  /get-all-cards:
+    get:
+      summary: "get credit card list"
+      responses:
+        200:
+          description: "Success | OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Card"
+        500:
+          description: "Server-side error"
+          
+  /add-card:
+    post:
+      summary: "add new credit card"
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+              $ref: "#/definitions/Card"
+      responses:
+        200:
+          description: "Add new credit card in memory"
+        400:
+          description: "Name is required | Card Number is required"
+        500:
+          description: "Server-side error"
+definitions:
+  Card:
+    type: "object"
+    required:
+      - name
+      - creditcard Number
+      - limit
+    properties:
+      name:
+        type: "string"
+      creditcard Number:
+        type: "string"  
+      limit:
+        type: "integer"
+        format: "int64"
+      
