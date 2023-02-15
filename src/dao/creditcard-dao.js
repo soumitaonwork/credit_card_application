@@ -14,7 +14,6 @@ creditCardDao.addCard=async (username, cardNumber, limit)=>{
   return true;
 }
 
-
 // Get all cards
 creditCardDao.getAllCards=async ()=>{
   let carddetails = new Promise((resolve,reject)=> {
