@@ -1,4 +1,5 @@
 const { ENVCODE = 'dev' } = process.env;
+const fs=require('fs');
 /**
  * loads the configurations details from respective environment
  */
