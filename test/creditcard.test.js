@@ -39,8 +39,6 @@ describe('Credit card API', () => {
       expect(response.type).toEqual('application/json');
     });
   });
-
-  
 });
 
 
