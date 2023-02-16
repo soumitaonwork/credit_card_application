@@ -1,26 +1,36 @@
-const creditCardService = require('./../services/creditcard-service');
-module.exports = {
-    addCreditCard: async (req, res, next) => {
-        try {
-            const { name, cardNumber, limit } = req.body;
-            const creditCard = new creditCardService();
-            const report = await creditCard.addCreditCard(name, cardNumber, limit);
-            return res.status(report.status).send({ message: report.msg});
-        } catch (error) {
-            return next(error);
-        }
-    },
+const creditCardService = require("./../services/creditcard-service");
+const responseFactory = require("./../utils/responseFactory");
 
-    getAllCreditCards: async (req, res, next) => {
-        try {
-            const creditCard = new creditCardService();
-            const report = await creditCard.getAllCreditCard();
-            if(report){
-                return res.status(200).json({ message: report });
-            }
-            
-        } catch (error) {
-            return next(error);
-        }
+module.exports = {
+  addCreditCard: async (req, res, next) => {
+    const customResponse = responseFactory(res);
+    try {
+      const { name, cardNumber, limit } = req.body;
+      if(!name || !cardNumber || limit){
+        customResponse.notFound("Please enter name,card number and limit as string parameters.")
+      }
+      const creditCard = new creditCardService();
+      const report = await creditCard.addCreditCard(name, cardNumber, limit);
+      if (report.status == 200) {
+        customResponse.success(report.msg);
+      } else {
+        customResponse.notAcceptable(report.msg);
+      }
+    } catch (error) {
+      customResponse.error(error.message);
     }
-}
+  },
+
+  getAllCreditCards: async (req, res, next) => {
+    const customResponse = responseFactory(res);
+    try {
+      const creditCard = new creditCardService();
+      const report = await creditCard.getAllCreditCard();
+      if (report) {
+        customResponse.success(report);
+      }
+    } catch (error) {
+      customResponse.error(error.message);
+    }
+  },
+};
