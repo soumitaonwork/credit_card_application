@@ -9,7 +9,6 @@ creditCardDao.addCard=async (username, cardNumber, limit)=>{
       if(err){
         throw err;
       }
-        console.log('Inserted', carddetails);
     })
   return true;
 }

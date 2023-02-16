@@ -2,9 +2,16 @@
 
 function responseFactory(res) {
     return {
-      // Respond with a success message and optional data
+      
       success: function(data) {
         res.status(200).json({
+          status: 'success',
+          data: data
+        });
+      },
+
+      created: function(data) {
+        res.status(201).json({
           status: 'success',
           data: data
         });
@@ -26,7 +33,7 @@ function responseFactory(res) {
         });
       },
   
-      notAcceptable: function(message, statusCode = 406) {
+      badRequest: function(message, statusCode = 400) {
         res.status(statusCode).json({
           status: 'error',
           message: message

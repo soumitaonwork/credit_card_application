@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const router = require("./src/router");
-const errorMiddleware = require("./src/middlewares/error");
 const { PORT } = require("./src/config/config");
 const bodyParser = require('body-parser')
 const swaggerJSDoc = require("swagger-jsdoc");
@@ -46,8 +45,6 @@ app.use((req, res, next) => {
 // API routes
 app.use("/", router);
 
-// //error middleware
-app.use(errorMiddleware);
 
 module.exports = app.listen(PORT, () => {
   console.log(`Server listening @ http://localhost:${PORT}`);

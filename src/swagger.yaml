@@ -8,8 +8,8 @@ paths:
     get:
       summary: "get credit card list"
       responses:
-        200:
-          description: "Success | OK"
+        201:
+          description: "Created"
           schema:
             type: "array"
             items:
@@ -30,7 +30,7 @@ paths:
         200:
           description: "Add new credit card in memory"
         400:
-          description: "Name is required | Card Number is required"
+          description: "Please enter name,card number and limit as string parameters. || Card number should be numeric || Invalid card number"
         500:
           description: "Server-side error"
 definitions:

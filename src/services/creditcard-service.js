@@ -11,10 +11,10 @@ class CreditCardService {
   async addCreditCard(name, cardNumber, limit) {
     try {
       if (isNaN(cardNumber)) {
-        return { status: 406, msg: "Card number should be numeric" };
+        return { status: 400, msg: "Card number should be numeric" };
       }
       if (!validateCreditCard.validateCreditCardNumber(cardNumber)) {
-        return { status: 406, msg: "Invalid card number" };
+        return { status: 400, msg: "Invalid card number" };
       } else {
         let addcreditcard = await creditCardDao.addCard(
           name,
