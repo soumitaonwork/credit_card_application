@@ -1,14 +1,18 @@
-FROM node:lts
+# Base image
+FROM node:14
 
+# Set working directory
 WORKDIR /app
 
+# Copy application files
 COPY package*.json ./
+COPY app.js ./
 
-RUN npm cache clean --force
+# Install dependencies
 RUN npm install
 
-COPY . .
-
+# Expose port
 EXPOSE 3000
 
-ENTRYPOINT ["npm", "start"]
+# Start the application
+CMD [ "npm", "start" ]
