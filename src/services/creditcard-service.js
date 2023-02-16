@@ -14,14 +14,14 @@ class CreditCardService {
         return { status: 406, msg: "Card number should be numeric" };
       }
       if (!validateCreditCard.validateCreditCardNumber(cardNumber)) {
-        return { status: 401, msg: "Invalid card number" };
+        return { status: 406, msg: "Invalid card number" };
       } else {
         let addcreditcard = await creditCardDao.addCard(
           name,
           cardNumber,
           limit
         );
-        return { status: 200, msg: `Credit card successfully added` };
+        return { status: 201, msg: `Credit card successfully added` };
       }
     } catch (error) {
       console.log(
