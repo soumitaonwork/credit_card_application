@@ -57,3 +57,6 @@ http://localhost:3000/api-docs/
 Postman Collection :
 Credit card application backend.postman_collection (found in root directory)
 
+Add-on :
+Dockerfile : A Dockerfile is a text file that contains a set of instructions that are used to build a Docker image. The Dockerfile is used to automate the process of creating a Docker container, by configuration required for the application to run.
+
