@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 // API routes
 app.use("/", router);
 
-//error middleware
+// //error middleware
 app.use(errorMiddleware);
 
 module.exports = app.listen(PORT, () => {
